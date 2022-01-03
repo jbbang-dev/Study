@@ -2,22 +2,21 @@
 
 윈도우 CMD(Command Line) 기준 설명 자료입니다.
 
-1. 파이썬/pip 설치 확인
+### 1. 파이썬/pip 설치 확인
 
 ```powershell
 C:￦> python --version
 C:￦> pip --version
 ```
 
-2. jupyter notebook 설치
+### 2. jupyter notebook 설치
+#### [![텍스트](https://jupyter.org/assets/logos/rectanglelogo-greytext-orangebody-greymoons.svg)](https://jupyter.org/install)
 
-[Project Jupyter](https://jupyter.org/install)
-
-```powershell
-C:￦> pip install jupyterlab
+```powershell 
+C:￦> pip install jupyterlab 
 ```
 
-3. 개발 폴더 설정 및 이동
+### 3. 개발 폴더 설정 및 이동
 
 개인 실습 폴더 위치는 편한대로..
 
@@ -28,13 +27,13 @@ C:￦> d:
 D:￦> cd d:\python_dev\ch05
 ```
 
-4. 개발 폴더 내 python virtual environment 설정
+### 4. 개발 폴더 내 python virtual environment 설정
 
 ```powershell
 D:￦python_dev￦ch05> python -m venv venv
 ```
 
-5. 가상 환경 활성화 실행
+### 5. 가상 환경 활성화 실행
 
 ```powershell
 D:￦python_dev￦ch05> venv\Scripts\activate.bat
@@ -46,7 +45,7 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 (venv) D:￦python_dev￦ch05>
 ```
 
-6. 의존성 패키지 라이브러리 미리 설치(google-cloud-bigquery, pandas, pyarrow)
+### 6. 의존성 패키지 라이브러리 미리 설치(google-cloud-bigquery, pandas, pyarrow)
 
 ```powershell
 (venv)￦> pip install google-cloud-bigquery
@@ -54,24 +53,24 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 (venv)￦> pip install pyarrow
 ```
 
-1. jupyter 의존성 및 가상 kernel 추가
+### 7. jupyter 의존성 및 가상 kernel 추가
 
 ```powershell
 (venv)￦> pip install ipykernel
 (venv)￦> python -m ipykernel install --user --name venv --display-name "bq-python-kernel"
 ```
 
-1. jupyter 잘 설치되었는지 실행
+### 8. jupyter 잘 설치되었는지 실행
 
 ```powershell
 (venv)￦> jupyter-lab
 ```
 
-7. 종료할때는 Shut Down으로 종료
+### 9. 종료할때는 Shut Down으로 종료
 
  - CMD 창에 프롬프트로 나오지 않는다면 [ctrl+c]
 
-8. 가상환경 빠져나오기
+### 10. 가상환경 빠져나오기
 
 ```powershell
 (venv)￦> venv\Scripts\deactivate.bat
@@ -83,6 +82,6 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 ￦>
 ```
 
-9. GCP Service Account 및 key pair(json) 생성
+### 11. GCP Service Account 및 key pair(json) 생성
 
 부터는 같이 실습~
