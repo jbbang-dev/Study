@@ -1,4 +1,4 @@
-# ch.05 빅쿼리를 활용한 개발
+# Python notebook 실습(With Jupyterlab)
 
 윈도우 CMD(Command Line) 기준 설명 자료입니다.
 
