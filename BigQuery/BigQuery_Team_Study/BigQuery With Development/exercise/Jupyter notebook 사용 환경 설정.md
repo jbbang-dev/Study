@@ -84,4 +84,4 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 
 ### 11. GCP Service Account 및 key pair(json) 생성
 
-부터는 같이 실습~
+부터는 같이 실습

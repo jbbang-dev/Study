@@ -20,8 +20,8 @@ sql <- "SELECT
         LIMIT 10
         "
 # 쿼리 수행 및 data frame으로 데이터 반환
-tbl <- bq_project_query(project,  sql)
-df <- bq_table_download(tbl, n_max=100)
+result <- bq_project_query(project,  sql)
+df <- bq_table_download(result, n_max=100)
 # 조회 내역 확인
 grid.table(df)
 plot.ts(df$NUM_TRIPS)
