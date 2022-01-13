@@ -62,7 +62,7 @@
 
 # 2. Google Cloud Client Library(with Python, Jupyter)
 ## 2.1. Python / Virtual Environment / Jupyter notebook 사용 환경 설정
-  - [Python / Virtual Environment / Jupyter notebook 사용 환경 설정](https://github.com/jbbang-dev/Study/blob/e8bc8d3c7e7eaf0044425881a29f00c83bb6c72c/BigQuery/BigQuery_Team_Study/BigQuery%20With%20Development/exercise/Jupyter%20notebook%20%EC%82%AC%EC%9A%A9%20%ED%99%98%EA%B2%BD%20%EC%84%A4%EC%A0%95.md)
+  - [Python / Virtual Environment / Jupyter notebook 사용 환경 설정](https://github.com/jbbang-dev/Study/blob/d077354a45a77421315127f3256bff6362eccf1d/BigQuery/BigQuery_Team_Study/BigQuery%20With%20Development/exercise/Jupyter%20notebook%20%EC%82%AC%EC%9A%A9%20%ED%99%98%EA%B2%BD%20%EC%84%A4%EC%A0%95.md)
   - Python notebook 아래부터 실습 진행(With Jupyterlab)
 <br></br>
 
