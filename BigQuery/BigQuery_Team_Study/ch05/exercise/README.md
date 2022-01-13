@@ -4,7 +4,7 @@
 
 ### 1. 파이썬/pip 설치 확인
 
-```powershell
+```CMD
 C:￦> python --version
 C:￦> pip --version
 ```
@@ -12,7 +12,7 @@ C:￦> pip --version
 ### 2. jupyter notebook 설치
 #### [![텍스트](https://jupyter.org/assets/logos/rectanglelogo-greytext-orangebody-greymoons.svg)](https://jupyter.org/install)
 
-```powershell 
+```CMD
 C:￦> pip install jupyterlab 
 ```
 
@@ -22,32 +22,32 @@ C:￦> pip install jupyterlab
 
 예) d:\python_dev\ch05
 
-```powershell
+```CMD
 C:￦> d:
 D:￦> cd d:\python_dev\ch05
 ```
 
 ### 4. 개발 폴더 내 python virtual environment 설정
 
-```powershell
+```CMD
 D:￦python_dev￦ch05> python -m venv venv
 ```
 
 ### 5. 가상 환경 활성화 실행
 
-```powershell
+```CMD
 D:￦python_dev￦ch05> venv\Scripts\activate.bat
 ```
 
 실행하면 화면 Clear 이후 아래와 같이 (venv)가 앞에 붙음
 
-```powershell
+```CMD
 (venv) D:￦python_dev￦ch05>
 ```
 
 ### 6. 의존성 패키지 라이브러리 미리 설치(google-cloud-bigquery, pandas, pyarrow)
 
-```powershell
+```CMD
 (venv)￦> pip install google-cloud-bigquery
 (venv)￦> pip install pandas
 (venv)￦> pip install pyarrow
@@ -55,14 +55,14 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 
 ### 7. jupyter 의존성 및 가상 kernel 추가
 
-```powershell
+```CMD
 (venv)￦> pip install ipykernel
 (venv)￦> python -m ipykernel install --user --name venv --display-name "bq-python-kernel"
 ```
 
 ### 8. jupyter 잘 설치되었는지 실행
 
-```powershell
+```CMD
 (venv)￦> jupyter-lab
 ```
 
@@ -72,13 +72,13 @@ D:￦python_dev￦ch05> venv\Scripts\activate.bat
 
 ### 10. 가상환경 빠져나오기
 
-```powershell
+```CMD
 (venv)￦> venv\Scripts\deactivate.bat
 ```
 
 아래와 같이 (venv) 없어짐
 
-```powershell
+```CMD
 ￦>
 ```
 

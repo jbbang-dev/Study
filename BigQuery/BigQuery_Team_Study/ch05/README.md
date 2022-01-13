@@ -1,4 +1,4 @@
-<< 프로그래밍 방식을 활용한 개발 >>
+<< BigQuery With Development >>
 ===
 
 # 1. REST API
@@ -13,40 +13,40 @@
   - 샘플 api : Method: tables.list | BigQuery | Google Cloud
     - 인증정보 설정
       - Option 1 - Service Account Key Pair 사용
-        ```Powershell
+        ```bash
         set GOOGLE_APPLICATION_CREDENTIALS="looker-data-grfit-536efecf194c.json"
         ```
       - Option 2 - browser를 통한 login 인증
-        ```Powershell
+        ```bash
         gcloud auth application-default login
         ```
     - API 호출
-    ```Powershell
+    ```bash
     PROJECT=$(gcloud config get-value project)
     access_token=$(gcloud auth application-default print-access-token)
     curl -H "Authorization: Bearer $access_token" -H "Content-Type: application/json" -X GET "https://www.googleapis.com/bigquery/v2/projects/$PROJECT/datasets/pipelining_sample/tables"
     ```
     
-## 1.3. REST API 대신 SQL 사용
-  - 프로그래밍 대신 쿼리 이용하는 방법
+## 1.3. SQL 사용
+  - Query를 이용하여 스키마 정보 확인
   - SQL로 가능한 BigQuery 관련 정보들
     - CREATE / ALTER / DROP TABLE
     - INSERT / DELETE / UPDATE / MERGE
-    - 데이터셋 메타데이터
+    - Dataset Metadata
       - INFORMATION_SCHEMA.SCHEMATA
       - INFORMATION_SCHEMA.SCHEMATA_OPTIONS
-    - 테이블(뷰) 메타데이터
+    - Table(View) Metadata
       - INVORMATION_SCHEMA.TABLES
       - INVORMATION_SCHEMA.TABLE_OPTIONS
       - INVORMATION_SCHEMA.COLUMNS
       - INVORMATION_SCHEMA.COLUMN_OPTIONS
-    - 작업 메타데이터
+    - Job Metadata
       - NFORMATION_SCHEMA.JOBS_BY_USER
       - INFORMATION_SCHEMA.JOBS_BY_PROJECT
       - INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION
-    - 도구 사용과 숙련도 차원에서 SQL을 사용하는 것이 더 나은 경우도 많다..고 함
+    - 도구 사용과 숙련도 차원에서 SQL을 사용하는 것이 더 나은 경우도 있음
   - 쿼리를 API로 수행
-    ```Powershell
+    ```bash
     request.json 
     curl -H "Authorization: Bearer $access_token"   -H "Content-Type: application/json"   -X POST   -d @request.json   "https://www.googleapis.com/bigquery/v2/projects/$PROJECT/queries"
     ```
@@ -64,9 +64,9 @@
 ## 2.1. Python / Virtual Environment / Jupyter notebook 사용 환경 설정
   - [Python / Virtual Environment / Jupyter notebook 사용 환경 설정](https://github.com/jbbang-dev/Study/blob/master/BigQuery_Study/ch05/%EB%B9%85%EC%BF%BC%EB%A6%AC%EB%A5%BC%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EA%B0%9C%EB%B0%9C.md)
   - Python notebook 아래부터 실습 진행(With Jupyterlab)
+<br></br>
 
-
-# 3. 데이터 과학 도구에서 빅쿼리 다루기
+# 3. 다양한 도구로 BigQuery 개발 활용
 ## 3.1. jupyter magic(With Jupyterlab)
   1. jupyter-lab에서 jupyter magic 키워드 사용 개발(%, %%)
      - [Built-in magic commands — IPython 7.30.1 documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html)
