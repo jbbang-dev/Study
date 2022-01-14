@@ -66,6 +66,7 @@
   - Python notebook 아래부터 실습 진행(With Jupyterlab)
 <br></br>
 
+
 # 3. 다양한 도구로 BigQuery 개발 활용
 ## 3.1. jupyter magic(With Jupyterlab)
   1. jupyter-lab에서 jupyter magic 키워드 사용 개발(%, %%)
