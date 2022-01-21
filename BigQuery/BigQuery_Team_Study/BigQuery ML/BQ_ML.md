@@ -102,8 +102,7 @@
 >무비렌즈 데이터셋을 활용하여 협업 필터링 행렬분해 사용
 ## 2.1. 행렬분해 모델 생성
 
-***matrix_factorization*** : 사용자 팩터와 아이템 팩터의 2개의 벡터로 분해하는 협업 필터링 기술
-기본 설정으로는 학습 시간 오래걸림
+***[model_type='matrix_factorization']*** : 사용자 팩터와 아이템 팩터의 2개의 벡터로 분해하는 협업 필터링 기술이며, 기본 설정으로는 학습 시간 오래걸림
 
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender
@@ -117,11 +116,12 @@ FROM ch09eu.movielens_ratings
 결과
 - 반복 : 5회
 - 최종 학습손실 : 0.5734
-- 최종 평가손실 : 174.4057
+- 최종 평가손실 : ```174.4057```
 - 총 시간 : 1시간
 
 
-***l2_reg*** : 
+***[l2_reg=0.2]*** : 적용된 L2 정규화의 양
+> ***L2 regularization*** : 가중치의 제곱합에 비례하여 가중치에 페널티를 주는 정규화 유형입니다. L2 정규화는 이상치 가중치(양수 값이 높거나 음수 값이 낮은 값)를 0에 가깝게 만드는 데 도움이 되지만 0에 가깝지는 않습니다. (L1 정규화와 대조) L2 정규화는 항상 선형 모델의 일반화를 향상시킵니다.
 
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender_l2
@@ -135,10 +135,10 @@ FROM ch09eu.movielens_ratings
 결과
 - 반복 : 3회
 - 최종 학습손실 : 0.6509
-- 최종 평가손실 : 1.4596
+- 최종 평가손실 : ```1.4596```
 - 총 시간 : 35분
 
-***num_factors :***
+***[num_factors=16]*** : 행렬 분해 모델에 사용할 잠재 계수의 수를 지정합니다.
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender_16
 options(model_type='matrix_factorization',
@@ -149,7 +149,7 @@ userId, movieId, rating
 FROM ch09eu.movielens_ratings
 ```
 결과
-- 최종 평가손실 : 0.97
+- 최종 평가손실 : ```0.97```
 
 ## 2.2. 행렬분해 모델 활용
 ```sql 
@@ -306,3 +306,16 @@ CREATE OR REPLACE MODEL ch09eu.txtclass_tf
 OPTIONS (model_type='tensorflow',
          model_path='gs://bucket/some/dir/1549825580/*')
 ```
+
+# Reference
+- [Introduction | Recommendation Systems | Google Developers](https://developers.google.com/machine-learning/recommendation?hl=en)   
+- [Hyperparameter tuning in Cloud Machine Learning Engine using Bayesian Optimization | Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/hyperparameter-tuning-cloud-machine-learning-engine-using-bayesian-optimization)   
+- [Next Steps | Machine Learning Crash Course | Google Developers](https://developers.google.com/machine-learning/crash-course/next-steps)   
+- [BigQuery ML documentation | Google Cloud](https://cloud.google.com/bigquery-ml/docs#docs)   
+- [The CREATE MODEL statement | BigQuery ML | Google Cloud](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)   
+- [AutoML Tables documentation | Google Cloud](https://cloud.google.com/automl-tables/docs)   
+- [BigQuery ML pricing | BigQuery: Cloud Data Warehouse | Google Cloud](https://cloud.google.com/bigquery-ml/pricing)   
+- [Pricing | BigQuery: Cloud Data Warehouse](https://cloud.google.com/bigquery/pricing?hl=ko#flex-slots-pricing)
+- [추천시스템 협업필터링 - Matrix Factorization : 네이버 블로그](https://m.blog.naver.com/car9380/221175862829)   
+- [Matrix Factorization ALS SGD](https://m.blog.naver.com/car9380/221182254937)   
+- [#5 행렬 인수분해(Matrix Factorization)](https://alsoj.tistory.com/268)   
