@@ -167,12 +167,142 @@ LIMIT 5
 - ML.PREDICT 함수를 호출할 때 학습된 추천 모델을 전달하고 예측 수행에 필요한 일련의 MOVIEiD 및 uSERiD를 제공
 
 ## 2.3. BigQuery ML 요금제
+> 행렬분해는 ***정액제나 예약 고객만 사용 가능***하며, ***주문형 고객은 가변슬롯***을 통해 행렬분해를 사용해야 함
 ### 2.3.1. On-Demand 요금제
-
 ![image](https://user-images.githubusercontent.com/77611557/150450797-4d83938c-e08b-4ade-98b0-411955de60ab.png)
 
-
-
-
+### 2.3.2. Capacity Commitment and Reservation 요금제(slot 요금제)
 ![image](https://user-images.githubusercontent.com/77611557/150450702-0d296505-e31d-43ef-862c-98b04dede333.png)
 
+
+# 3. GCP의 커스텀 머신러닝 모델
+## 3.1. Hyperparameter Tuning
+
+- 머신러닝 수행 시 많은 파라미터들을 임의로 선택함. 
+  - 학습률 : LEARN_RATE
+  - L2 정규화 수준 : L2_REG
+  - 신경망의 계층 및 노드 수 : BATCH_SIZE 
+  - 부스팅 트리의 최대 심도 : AUTO_CLASS_WEIGHTS 
+  - 행렬분해 모델의 feature 수 : NUM_FACTORS
+> 각 파라미터에 대하여 어떤 값을 선택하는지에 따라 더 나은 모델을 만들 수 있는데, 이렇게 적절한 값을 선택하는것을 하이퍼파라미터 튜닝이라고 함   
+
+### 3.1.1. 파이썬에서 하이퍼 파라미터 튜닝하기
+```python
+# On Notebook instances in Google Cloud, these are already installed
+#!python -m pip install google-cloud-bigquery
+#%load_ext google.cloud.bigquery
+
+from multiprocessing.dummy import Pool as ThreadPool
+from google.cloud import bigquery
+import numpy as np
+PROJECT='cloud-training-demos'  # CHANGE THIS
+
+class Range:
+    def __init__(self, minvalue, maxvalue, incr=1):
+        self._minvalue = minvalue
+        self._maxvalue = maxvalue
+        self._incr = incr
+    def values(self):
+        return range(self._minvalue, self._maxvalue, self._incr) 
+
+class Params:
+    def __init__(self, num_clusters):
+        self._num_clusters = num_clusters
+        self._model_name = 'ch09eu.london_station_clusters_{}'.format(num_clusters)
+        self._train_query = """
+          CREATE OR REPLACE MODEL {}
+          OPTIONS(model_type='kmeans', 
+                  num_clusters={}, 
+                  standardize_features = true) AS
+          SELECT * except(station_name)
+          from ch09eu.stationstats
+        """.format(self._model_name, self._num_clusters)
+        self._eval_query = """
+          SELECT davies_bouldin_index AS error
+          FROM ML.EVALUATE(MODEL {});
+        """.format(self._model_name)
+        self._error = None
+        
+    def run(self):
+        bq = bigquery.Client(project=PROJECT)
+        job = bq.query(self._train_query, location='EU')
+        job.result() # wait for job to finish
+        evaldf = bq.query(self._eval_query, location='EU').to_dataframe()
+        self._error = evaldf['error'][0]
+        return self
+    
+    def __str__(self):
+        fmt = '{!s:<40} {:>10f} {:>5d}'
+        return fmt.format(self._model_name, self._error, self._num_clusters)
+    
+def train_and_evaluate(num_clusters: Range, max_concurrent=3):
+    # grid search means to try all possible values in range
+    params = []
+    for k in num_clusters.values():
+        params.append(Params(k))
+    
+    # run all the jobs
+    print('Grid search of {} possible parameters'.format(len(params)))
+    pool = ThreadPool(max_concurrent)
+    results = pool.map(lambda p: p.run(), params)
+    
+    # sort in ascending order
+    return sorted(results, key=lambda p: p._error)
+    
+params = train_and_evaluate(Range(3, 20))
+print(*params, sep='\n')
+```
+결과
+```cmd
+ch09eu.london_station_clusters_19          1.400756    19
+ch09eu.london_station_clusters_15          1.415517    15
+ch09eu.london_station_clusters_18          1.429912    18
+ch09eu.london_station_clusters_14          1.438088    14
+ch09eu.london_station_clusters_13          1.438440    13
+ch09eu.london_station_clusters_17          1.454715    17
+ch09eu.london_station_clusters_16          1.456185    16
+ch09eu.london_station_clusters_11          1.502263    11
+ch09eu.london_station_clusters_12          1.511940    12
+ch09eu.london_station_clusters_10          1.529150    10
+ch09eu.london_station_clusters_7           1.551265     7
+ch09eu.london_station_clusters_9           1.571020     9
+ch09eu.london_station_clusters_6           1.571398     6
+ch09eu.london_station_clusters_4           1.596398     4
+ch09eu.london_station_clusters_8           1.621974     8
+ch09eu.london_station_clusters_5           1.660766     5
+ch09eu.london_station_clusters_3           1.681441     3
+```
+
+## 3.2. AutoML
+> AutoML은 코드를 작성하지 않고도 자동으로 최첨단의 머신러닝 모델을 생성하고 배포하는 제품   
+최고의 머신러닝 전문가가 수동으로 제작한 모델과 비슷한 품질의 모델을 빌드하기 위해 다양한 피처 엔지니어링, 하이퍼파라미터 튜닝, 신경 구조 검색, 전송 학습 방법을 혼합해 적용한다.   
+예를 들어 AutoML 비전은 이미지를 업로드하고 이미지의 레이블을 식별해서 이미지 분류나 객체 감지 모델 학습을 시작하기 위한 웹 기반 인터페이스를 제공한다.   
+빅쿼리는 주로 구조화된 데이터나 준구조화된 데이터를 다루고, 관련 AutoML 모델은 AutoML 자연어, AutoML 테이블, AutoML 추천 등에 주로 사용한다.
+
+## 3.3. TensorFlow
+> 빅쿼리 ML은 확장 가능하고 편리, AutoML은 강력하고 정확   
+케라스 또는 텐서플로 ML 라이브러리를 이용하여 고유한 사용자 지정 모델을 구축해야 하는 경우 존재   
+빅쿼리와 텐서플로 모델 간에는 상호운용성이 있음
+>> - 텐서플로 모델을 빅쿼리에 로드하고 빅쿼리 모델을 텐서플로의 SavedModel 형식으로 내보낼 수 있음
+>> - 텐서플로로 모델을 학습시키고 빅쿼리로 예측하거나
+>> - 빅쿼리에서 모델을 학습시킨 후 텐서플로 서빙에 배포하는것이 유리할 수 있음
+>> - 텐서플로 코드에서 빅쿼리에 직접 접근하고 빅쿼리 테이블을 텐서플로 레코드로 내보내 데이터를 변환하는 것도 가능
+
+### 3.3.1. 텐서플로 빅쿼리 클라이언트
+- https://github.com/tensorflow/io/blob/master/tensorflow_io/bigquery.md
+- 빅쿼리 스토리지에서 효율적으로 쿼리 실행하지 않고 직접 데이터를 읽기 위해 스토리지 API를 사용
+
+### 3.3.2. 텐서플로로 내보내기
+- 자바스크립트와 tensorflow.js를 사용하는 웹 브라우저, 텐서플로 라이트를 사용하는 임베디드 장치나 모바일 애플리케이션, 쿠버플로루를 사용하는 쿠버네티스 클러스터, API 플랫폼 예측을 사용하는 REST API 등 다양한 방법으로 텐서플로 모델에 대한 예측을 실행할 수 있음
+- 빅쿼리 ML 모델을 텐서플로의 SavedModel로 내보내는 것이 유리할 때가 있음
+
+### 3.3.3. 텐서플로 모델로 예측하기
+- 텐서플로에서 모델을 학습하고 SavedModel로 내보냈다면, 텐서플로 모델을 빅쿼리로 가져와 ML.PREDICT SQL 함수로 예측할 수 있음
+빅쿼리는 어떤 쿼리도 예약이 가능하므로 이 방법은 배치예측을 실행하는 경우에 매우 유용함
+- 모델을 빅쿼리로 가져오려면 그저 다른 MODEL_TYPE을 지정하고 sAVEDmODEL을 내보낸 모델 결로를 지정하기만 하면 됨
+```sql
+-- 텐서플로 모델을 생성하는 쿼리
+CREATE OR REPLACE MODEL ch09eu.txtclass_tf
+OPTIONS (model_type='tensorflow',
+         model_path='gs://bucket/some/dir/1549825580/*')
+```
