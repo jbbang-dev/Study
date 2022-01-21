@@ -49,13 +49,13 @@
     1. Observed Only MF
     - 제곱 오차 합계를 최소화 하기 위한 Squared distance
     - 관찰되지 않은 값을 0으로 처리하고, 행렬의 모든 항목에 대한 합계 계산
-    - not good idea : 효과적인 추천을 할 수 없고 일반화되지 않음
-    </br>
+    - not good idea : 효과적인 추천을 할 수 없고 일반화되지 않음   
+    
     2. SVD(Single Value Decomposition) 계산
     - Single Value Decomposition => sparse matrix ~ approximation = User factor * Item factor
     - 3개 행렬로 나누고(User, 속성들의 가중치, Item)
-    - https://m.blog.naver.com/car9380/221175862829
-    </br>
+    - https://m.blog.naver.com/car9380/221175862829   
+    
     3. Weighted Matrix Factorization
     - 관찰된 항목에 대한 합계와 관찰되지 않은 항목에 대한 합계(0으로 처리)로 두가지로 분해
     - 두 항에 하이퍼파라미터로 가중치 부여하여 
@@ -169,6 +169,10 @@ LIMIT 5
 ## 2.3. BigQuery ML 요금제
 ### 2.3.1. On-Demand 요금제
 
+![image](https://user-images.githubusercontent.com/77611557/150450797-4d83938c-e08b-4ade-98b0-411955de60ab.png)
 
 
+
+
+![image](https://user-images.githubusercontent.com/77611557/150450702-0d296505-e31d-43ef-862c-98b04dede333.png)
 
