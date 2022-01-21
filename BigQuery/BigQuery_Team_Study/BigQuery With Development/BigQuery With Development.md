@@ -127,4 +127,8 @@
   5. [bq command-line tool reference | BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/bq-cli-reference)
 
 # 4. 기타
-> ***※ key.json 파일은 github 등을 사용할 때 public으로 올려놓게 되면 매우 위험하므로 주의 필요!***
+> ***※ key.json 파일은 github 등을 사용할 때 public으로 올려놓게 되면 매우 위험하므로 주의 필요!***   
+   
+   
+# Reference
+- [ 구글 빅쿼리 완벽 가이드: 발리아파 락쉬마난, 조던 티가니 저/변성윤, 장현희 역, 책만, 2020 ]

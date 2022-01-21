@@ -24,7 +24,9 @@
   
 - 아래 다이어그램으로 특정 사용자가 시청한 영화를 식별
 ![image](https://user-images.githubusercontent.com/77611557/150443461-476d3fd4-13cf-4883-bbfd-4924d66de704.png)
-```단일 feature로 설명되지 않는 값 존재```
+```
+단일 feature로 설명되지 않는 값 존재
+```
 
 ### 1.1.2. 2D Embedding
 
@@ -44,23 +46,23 @@
   - Rating Matrix를 User Latent Matrix와 Item Latent Matrix로 분해
   ![image](https://user-images.githubusercontent.com/77611557/150443563-4c52517f-4d68-4a41-b9c4-16f2c6bd3825.png)
   - Objective Function(목적 함수) 선택
-  ![image](https://user-images.githubusercontent.com/77611557/150443621-e80e1b0d-c629-4640-aef1-1faa0c4bb905.png)
+  ![image](https://user-images.githubusercontent.com/77611557/150443621-e80e1b0d-c629-4640-aef1-1faa0c4bb905.png)   
 
-    1. Observed Only MF
-    - 제곱 오차 합계를 최소화 하기 위한 Squared distance
-    - 관찰되지 않은 값을 0으로 처리하고, 행렬의 모든 항목에 대한 합계 계산
-    - not good idea : 효과적인 추천을 할 수 없고 일반화되지 않음   
+    - Observed Only MF
+      - 제곱 오차 합계를 최소화 하기 위한 Squared distance
+      - 관찰되지 않은 값을 0으로 처리하고, 행렬의 모든 항목에 대한 합계 계산
+      - not good idea : 효과적인 추천을 할 수 없고 일반화되지 않음   
     
-    2. SVD(Single Value Decomposition) 계산
-    - Single Value Decomposition => sparse matrix ~ approximation = User factor * Item factor
-    - 3개 행렬로 나누고(User, 속성들의 가중치, Item)
-    - https://m.blog.naver.com/car9380/221175862829   
+    - SVD(Single Value Decomposition) 계산
+      - Single Value Decomposition => sparse matrix ~ approximation = User factor * Item factor
+      - 3개 행렬로 나누고(User, 속성들의 가중치, Item)
+      - https://m.blog.naver.com/car9380/221175862829   
     
-    3. Weighted Matrix Factorization
-    - 관찰된 항목에 대한 합계와 관찰되지 않은 항목에 대한 합계(0으로 처리)로 두가지로 분해
-    - 두 항에 하이퍼파라미터로 가중치 부여하여 
+    - Weighted Matrix Factorization
+      - 관찰된 항목에 대한 합계와 관찰되지 않은 항목에 대한 합계(0으로 처리)로 두가지로 분해
+      - 두 항에 하이퍼파라미터로 가중치 부여하여   
 
-  - 목적 함수의 최소화 알고리즘 적용 -> 학습속도 향상을 위해
+  - 목적 함수의 최소화 알고리즘 적용 -> 학습속도 향상을 위해   
     - Stochastic Gradient Descent(확률적 경사 하강법)
       - 행렬의 일부 값을 랜덤으로 추출하여 U,V 행렬의 성분을 조정 반복
     - Weighted Alternating Least Squares(W-ALS)
@@ -308,6 +310,7 @@ OPTIONS (model_type='tensorflow',
 ```
 
 # Reference
+- [ 구글 빅쿼리 완벽 가이드: 발리아파 락쉬마난, 조던 티가니 저/변성윤, 장현희 역, 책만, 2020 ]
 - [Introduction | Recommendation Systems | Google Developers](https://developers.google.com/machine-learning/recommendation?hl=en)   
 - [Hyperparameter tuning in Cloud Machine Learning Engine using Bayesian Optimization | Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/hyperparameter-tuning-cloud-machine-learning-engine-using-bayesian-optimization)   
 - [Next Steps | Machine Learning Crash Course | Google Developers](https://developers.google.com/machine-learning/crash-course/next-steps)   
@@ -318,4 +321,4 @@ OPTIONS (model_type='tensorflow',
 - [Pricing | BigQuery: Cloud Data Warehouse](https://cloud.google.com/bigquery/pricing?hl=ko#flex-slots-pricing)
 - [추천시스템 협업필터링 - Matrix Factorization : 네이버 블로그](https://m.blog.naver.com/car9380/221175862829)   
 - [Matrix Factorization ALS SGD](https://m.blog.naver.com/car9380/221182254937)   
-- [#5 행렬 인수분해(Matrix Factorization)](https://alsoj.tistory.com/268)   
+- [#5 행렬 인수분해(Matrix Factorization)](https://alsoj.tistory.com/268)
