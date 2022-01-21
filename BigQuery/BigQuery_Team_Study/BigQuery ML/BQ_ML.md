@@ -17,3 +17,29 @@
 - 1D Embedding
   - 영화가 어린이용인지(-1, 부정적 가치) 성인용인지(1, 긍정적 가치)로 [-1, 1] 범위
   - 사용자가 어린이영화에 관심(-1, 부정적 가치) 성인용영화 관심(1, 긍정적 가치)로 [-1, 1] 범위
+![image](https://user-images.githubusercontent.com/77611557/150443399-549f4087-2cd3-4639-bc54-1cf91a9a10da.png)
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443461-476d3fd4-13cf-4883-bbfd-4924d66de704.png)
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443499-f708dbb6-47cf-4125-89c4-0d7e035220b3.png)
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443518-ac335d94-d2de-40ef-af63-8cf967780385.png)
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443563-4c52517f-4d68-4a41-b9c4-16f2c6bd3825.png)
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443621-e80e1b0d-c629-4640-aef1-1faa0c4bb905.png)
+
+
+
+
+![image](https://user-images.githubusercontent.com/77611557/150443707-1375cc50-ba47-4231-9c63-063eddb7c910.png)
