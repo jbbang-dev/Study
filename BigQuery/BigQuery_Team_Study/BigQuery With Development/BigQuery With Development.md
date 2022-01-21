@@ -100,6 +100,7 @@
   |:---:|:---|
   |source|SELECT chapter, title FROM pipelining_sample.db_dataflow_test|
   |destination|SELECT chapter, title FROM bq_lib_ch05_jsyoo.temp_table|
+  
   참고 : [GCP - Apache Beam 알아보기](https://jaemunbro.medium.com/gcp-dataflow-apache-beam-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-a4f5f09b98d1)
 > ※ 기타 : python 3.8 버전에서 apache-beam 라이브러리 설치 원활
 
@@ -126,4 +127,4 @@
   5. [bq command-line tool reference | BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/bq-cli-reference)
 
 # 4. 기타
-> ※ key.json 파일은 github 등을 사용할 때 public으로 올려놓게 되면 매우 위험하므로 주의 필요!
+> ***※ key.json 파일은 github 등을 사용할 때 public으로 올려놓게 되면 매우 위험하므로 주의 필요!***
