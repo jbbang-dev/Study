@@ -285,6 +285,7 @@ ch09eu.london_station_clusters_3           1.681441     3
 > - 빅쿼리는 주로 구조화된 데이터나 준구조화된 데이터를 다루고, 관련 AutoML 모델은 AutoML 자연어, AutoML 테이블, AutoML 추천 등에 주로 사용한다.
 >> [Vertex AI Create Dataset](https://console.cloud.google.com/vertex-ai/datasets/create?project=looker-data-grfit)
 ## 3.3. TensorFlow
+> [TensorFlow](https://www.tensorflow.org/?hl=ko)
 > - 빅쿼리 ML은 확장 가능하고 편리, AutoML은 강력하고 정확   
 > - 케라스 또는 텐서플로 ML 라이브러리를 이용하여 고유한 사용자 지정 모델을 구축해야 하는 경우 존재   
 > - 빅쿼리와 텐서플로 모델 간에는 상호운용성이 있음
