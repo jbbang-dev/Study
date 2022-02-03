@@ -53,21 +53,22 @@
       - 관찰되지 않은 값을 0으로 처리하고, 행렬의 모든 항목에 대한 합계 계산
       - not good idea : 효과적인 추천을 할 수 없고 일반화되지 않음   
     
-    - SVD(Single Value Decomposition) 계산
+    - SVD(Single Value Decomposition, 특이값 분해) 계산
+      - https://m.blog.naver.com/car9380/221175862829   
       - Single Value Decomposition => sparse matrix ~ approximation = User factor * Item factor
       - 3개 행렬로 나누고(User, 속성들의 가중치, Item)
-      - https://m.blog.naver.com/car9380/221175862829   
-    
+
     - Weighted Matrix Factorization
       - 관찰된 항목에 대한 합계와 관찰되지 않은 항목에 대한 합계(0으로 처리)로 두가지로 분해
       - 두 항에 하이퍼파라미터로 가중치 부여하여   
 
-  - 목적 함수의 최소화 알고리즘 적용 -> 학습속도 향상을 위해   
+  - 학습속도 향상을 위한 목적 함수의 최소화 알고리즘 적용
+    - https://m.blog.naver.com/car9380/221182254937
     - Stochastic Gradient Descent(확률적 경사 하강법)
       - 행렬의 일부 값을 랜덤으로 추출하여 U,V 행렬의 성분을 조정 반복
     - Weighted Alternating Least Squares(W-ALS)
       - V매트릭스에만 값을 채우고 U매트릭스 최적화, 반대로 수행하면서 반복
-    - https://m.blog.naver.com/car9380/221182254937
+
   - SGD / WALS 장단점
     - SGD의 장단점
       - 장점 
@@ -123,7 +124,8 @@ FROM ch09eu.movielens_ratings
 
 
 ***[l2_reg=0.2]*** : 적용된 L2 정규화의 양
-> ***L2 regularization*** : 가중치의 제곱합에 비례하여 가중치에 페널티를 주는 정규화 유형입니다. L2 정규화는 이상치 가중치(양수 값이 높거나 음수 값이 낮은 값)를 0에 가깝게 만드는 데 도움이 되지만 0에 가깝지는 않습니다. (L1 정규화와 대조) L2 정규화는 항상 선형 모델의 일반화를 향상시킵니다.
+> ***L2 regularization*** : 가중치의 제곱합에 비례하여 가중치에 페널티를 주는 정규화 유형. L2 정규화는 이상치 가중치(양수 값이 높거나 음수 값이 낮은 값)를 0에 가깝게 만드는 데 도움이 되지만 0에 가깝지는 않다. (L1 정규화와 대조) L2 정규화는 항상 선형 모델의 일반화를 향상시킨다.<br>
+(https://developers.google.com/machine-learning/glossary?hl=en#l2-regularization)
 
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender_l2
@@ -140,7 +142,7 @@ FROM ch09eu.movielens_ratings
 - 최종 평가손실 : ```1.4596```
 - 총 시간 : 35분
 
-***[num_factors=16]*** : 행렬 분해 모델에 사용할 잠재 계수의 수를 지정합니다.
+***[num_factors=16]*** : 행렬 분해 모델에 사용할 잠재 계수의 수를 지정
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender_16
 options(model_type='matrix_factorization',
@@ -166,7 +168,7 @@ ORDER BY predicted_rating DESC
 LIMIT 5
 ```
 - 학습된 모델을 사용해 추천 목록 제공
-- ML.PREDICT 함수를 호출할 때 학습된 추천 모델을 전달하고 예측 수행에 필요한 일련의 MOVIEiD 및 uSERiD를 제공
+- ML.PREDICT 함수를 호출할 때 학습된 추천 모델을 전달하고 예측 수행에 필요한 일련의 movieId 및 userId를 제공
 
 ## 2.3. BigQuery ML 요금제
 > 행렬분해는 ***정액제나 예약 고객만 사용 가능***하며, ***주문형 고객은 가변슬롯***을 통해 행렬분해를 사용해야 함
@@ -243,18 +245,19 @@ def train_and_evaluate(num_clusters: Range, max_concurrent=3):
     for k in num_clusters.values():
         params.append(Params(k))
     
-    # run all the jobs
+    # 멀티쓰레드를 사용하여 전체작업 수행
     print('Grid search of {} possible parameters'.format(len(params)))
     pool = ThreadPool(max_concurrent)
+    # Parms 클래스의 run 메서드를 이용하여 학습 및 평가쿼리 호출
     results = pool.map(lambda p: p.run(), params)
     
-    # sort in ascending order
+    # 오름차순 정렬
     return sorted(results, key=lambda p: p._error)
     
 params = train_and_evaluate(Range(3, 20))
 print(*params, sep='\n')
 ```
-결과
+***결과***
 ```cmd
 ch09eu.london_station_clusters_19          1.400756    19
 ch09eu.london_station_clusters_15          1.415517    15
@@ -276,15 +279,15 @@ ch09eu.london_station_clusters_3           1.681441     3
 ```
 
 ## 3.2. AutoML
-> AutoML은 코드를 작성하지 않고도 자동으로 최첨단의 머신러닝 모델을 생성하고 배포하는 제품   
-최고의 머신러닝 전문가가 수동으로 제작한 모델과 비슷한 품질의 모델을 빌드하기 위해 다양한 피처 엔지니어링, 하이퍼파라미터 튜닝, 신경 구조 검색, 전송 학습 방법을 혼합해 적용한다.   
-예를 들어 AutoML 비전은 이미지를 업로드하고 이미지의 레이블을 식별해서 이미지 분류나 객체 감지 모델 학습을 시작하기 위한 웹 기반 인터페이스를 제공한다.   
-빅쿼리는 주로 구조화된 데이터나 준구조화된 데이터를 다루고, 관련 AutoML 모델은 AutoML 자연어, AutoML 테이블, AutoML 추천 등에 주로 사용한다.
-
+> - AutoML은 코드를 작성하지 않고도 자동으로 최첨단의 머신러닝 모델을 생성하고 배포하는 제품
+> - 최고의 머신러닝 전문가가 수동으로 제작한 모델과 비슷한 품질의 모델을 빌드하기 위해 다양한 피처 엔지니어링, 하이퍼파라미터 튜닝, 신경 구조 검색, 전송 학습 방법을 혼합해 적용한다.   
+> - AutoML 비전은 이미지를 업로드하고 이미지의 레이블을 식별해서 이미지 분류나 객체 감지 모델 학습을 시작하기 위한 웹 기반 인터페이스를 제공한다.   
+> - 빅쿼리는 주로 구조화된 데이터나 준구조화된 데이터를 다루고, 관련 AutoML 모델은 AutoML 자연어, AutoML 테이블, AutoML 추천 등에 주로 사용한다.
+>> [Vertex AI Create Dataset](https://console.cloud.google.com/vertex-ai/datasets/create?project=looker-data-grfit)
 ## 3.3. TensorFlow
-> 빅쿼리 ML은 확장 가능하고 편리, AutoML은 강력하고 정확   
-케라스 또는 텐서플로 ML 라이브러리를 이용하여 고유한 사용자 지정 모델을 구축해야 하는 경우 존재   
-빅쿼리와 텐서플로 모델 간에는 상호운용성이 있음
+> - 빅쿼리 ML은 확장 가능하고 편리, AutoML은 강력하고 정확   
+> - 케라스 또는 텐서플로 ML 라이브러리를 이용하여 고유한 사용자 지정 모델을 구축해야 하는 경우 존재   
+> - 빅쿼리와 텐서플로 모델 간에는 상호운용성이 있음
 >> - 텐서플로 모델을 빅쿼리에 로드하고 빅쿼리 모델을 텐서플로의 SavedModel 형식으로 내보낼 수 있음
 >> - 텐서플로로 모델을 학습시키고 빅쿼리로 예측하거나
 >> - 빅쿼리에서 모델을 학습시킨 후 텐서플로 서빙에 배포하는것이 유리할 수 있음
@@ -295,13 +298,13 @@ ch09eu.london_station_clusters_3           1.681441     3
 - 빅쿼리 스토리지에서 효율적으로 쿼리 실행하지 않고 직접 데이터를 읽기 위해 스토리지 API를 사용
 
 ### 3.3.2. 텐서플로로 내보내기
-- 자바스크립트와 tensorflow.js를 사용하는 웹 브라우저, 텐서플로 라이트를 사용하는 임베디드 장치나 모바일 애플리케이션, 쿠버플로루를 사용하는 쿠버네티스 클러스터, API 플랫폼 예측을 사용하는 REST API 등 다양한 방법으로 텐서플로 모델에 대한 예측을 실행할 수 있음
+- 자바스크립트와 tensorflow.js를 사용하는 웹 브라우저, 텐서플로 라이트를 사용하는 임베디드 장치나 모바일 애플리케이션, kubeflow를 사용하는 쿠버네티스 클러스터, API 플랫폼 예측을 사용하는 REST API 등 다양한 방법으로 텐서플로 모델에 대한 예측을 실행할 수 있음
 - 빅쿼리 ML 모델을 텐서플로의 SavedModel로 내보내는 것이 유리할 때가 있음
 
 ### 3.3.3. 텐서플로 모델로 예측하기
 - 텐서플로에서 모델을 학습하고 SavedModel로 내보냈다면, 텐서플로 모델을 빅쿼리로 가져와 ML.PREDICT SQL 함수로 예측할 수 있음
 빅쿼리는 어떤 쿼리도 예약이 가능하므로 이 방법은 배치예측을 실행하는 경우에 매우 유용함
-- 모델을 빅쿼리로 가져오려면 그저 다른 MODEL_TYPE을 지정하고 sAVEDmODEL을 내보낸 모델 결로를 지정하기만 하면 됨
+- 모델을 빅쿼리로 가져오려면 그저 다른 MODEL_TYPE을 지정하고 SavedModel을 내보낸 모델 결로를 지정하기만 하면 됨
 ```sql
 -- 텐서플로 모델을 생성하는 쿼리
 CREATE OR REPLACE MODEL ch09eu.txtclass_tf
