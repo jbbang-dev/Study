@@ -50,6 +50,7 @@ BigQuery의 데이터 세트 수준 기본 역할은 IAM 도입 전에도 존재
 NOW=$(date +%s)
 START_TIME=$(echo "($NOW - 24*60*60)*1000" | bc)
 ```
+![image](https://user-images.githubusercontent.com/77611557/152890872-47114cfa-0e45-41e0-9f33-6f8723fc5ee9.png)
 
 # 작업을 확인한 후 작업 ID를 얻음
 bq --location=US ls -j -all --min_creation_time $START_TIME
