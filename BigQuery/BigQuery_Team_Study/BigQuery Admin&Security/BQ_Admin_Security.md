@@ -39,26 +39,84 @@ BigQuery의 데이터 세트 수준 기본 역할은 IAM 도입 전에도 존재
 
 # 3. 빅쿼리 관리
 ## 3.1. 작업관리
-- 3가지의 상태 부여
-  - PENDING : 작업이 예약되었지만 아직 시작되지 않은 상태
-  - RUNNING : 작업이 시작되었음
-  - SUCCESS & FAILURE : 작업 결과에 따른 반환값
+>- 3가지의 상태 부여
+>   - PENDING : 작업이 예약되었지만 아직 시작되지 않은 상태
+>   - RUNNING : 작업이 시작되었음
+>   - SUCCESS & FAILURE : 작업 결과에 따른 반환값
 
 ```bash
 # 지난 24시간 내에 생성된 작업을 확인하는 명령
 # bc : 밀리초 변환
 NOW=$(date +%s)
 START_TIME=$(echo "($NOW - 24*60*60)*1000" | bc)
-```
-![image](https://user-images.githubusercontent.com/77611557/152890872-47114cfa-0e45-41e0-9f33-6f8723fc5ee9.png)
 
 # 작업을 확인한 후 작업 ID를 얻음
 bq --location=US ls -j -all --min_creation_time $START_TIME
+```
+![image](https://user-images.githubusercontent.com/77611557/152890872-47114cfa-0e45-41e0-9f33-6f8723fc5ee9.png)
 
+```bash
 # 실행 중인 작업을 취소하는 명령
-bqmin_creation_timebcbq --location=US cancel bquxjob_180ae24c_16b04a8d28d
+bq --location=US cancel bquxjob_180ae24c_16b04a8d28d
 
 # 지역을 생략한 채 작업을 취소하는 명령
 bq cancel someproject:US.bquxjob_180ae24c_16b04a8d28d
 ```
+## 3.2. 삭제된 레코드와 테이블의 복구
+>7일 이내 데이터 복구 가능  
+삭제된 테이블은 2일 이내 복구 가능
+
+- 테이블 복구
+```sql
+– 테이블의 상태를 24시간 전의 상태로 복구하려면 SYSTEM_TIME AS OF 문을 사용
+CREATE OR REPLACE TABLE ch10eu.restored_cycle_stations AS
+SELECT 
+  * 
+FROM `bigquery-public-data`.london_bicycles.cycle_stations
+FOR SYSTEM_TIME AS OF 
+    TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR)
+```
+
+- 테이블 삭제-복구
+```bash
+# 테이블 삭제
+bq rm ch10eu.restored_cycle_stations
+
+# 120초 전의 스냅샷을 이용해 복구
+NOW=$(date +%s)
+SNAPSHOT=$(echo "($NOW - 120)*1000" | bc) 
+bq --location=EU cp \
+   ch10eu.restored_cycle_stations@$SNAPSHOT \
+   ch10eu.restored_table
+```
+
+## 3.3. CI/CD
+>SQL 쿼리의 버전을 관리해서 특정 시점의 스크립트를 확보하거나 시간이 지나면서 변경된 스크립트 추적할 경우
+
+- _```Cloud Source Repository```_ 및 _```Cloud Function(Cloud Run)```_ 을 이용해 쿼리 실행
+- Cloud Function에서 빅쿼리 호출
+    - Cloud Source Repository에 빅쿼리 SQL 파일과 cloud function을 구현한 python 파일을 버전 관리 시스템에 등록  
+    [Cloud Source Repository](https://source.cloud.google.com/looker-data-grfit/looker-bq-test-repo)
+    - Cloud Function & Cloud Scheduler로 쿼리 예약 대신 사용 가능
+    ```python
+    from google.cloud import bigquery
+
+    def bq_cloudfunc01(request):
+        client = bigquery.Client()
+
+        query_job = client.query("""
+            SELECT CURRENT_DATETIME() AS Now, 'BigQuery Cloud Func Test' as test
+        """)
+        query_job.result()
+
+        extract_job = client.extract_table(
+            query_job.destination, 
+            "gs://bq_sample_study_jsyoo/file.csv"
+            )
+        extract_job.result()
+
+        return "Data Inserted!!"
+    ```
+
+# 4. 슬롯 예약(비용)
 
