@@ -305,7 +305,7 @@ ch09eu.london_station_clusters_3           1.681441     3
 ### 3.3.3. 텐서플로 모델로 예측하기
 - 텐서플로에서 모델을 학습하고 SavedModel로 내보냈다면, 텐서플로 모델을 빅쿼리로 가져와 ML.PREDICT SQL 함수로 예측할 수 있음
 빅쿼리는 어떤 쿼리도 예약이 가능하므로 이 방법은 배치예측을 실행하는 경우에 매우 유용함
-- 모델을 빅쿼리로 가져오려면 그저 다른 MODEL_TYPE을 지정하고 SavedModel을 내보낸 모델 결로를 지정하기만 하면 됨
+- 모델을 빅쿼리로 가져오려면 그저 다른 MODEL_TYPE을 지정하고 SavedModel을 내보낸 모델 경로를 지정하기만 하면 됨
 ```sql
 -- 텐서플로 모델을 생성하는 쿼리
 CREATE OR REPLACE MODEL ch09eu.txtclass_tf
