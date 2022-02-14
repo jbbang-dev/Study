@@ -142,7 +142,7 @@ FROM ch09eu.movielens_ratings
 - 최종 평가손실 : ```1.4596```
 - 총 시간 : 35분
 
-***[num_factors=16]*** : 행렬 분해 모델에 사용할 잠재 계수의 수를 지정
+***[num_factors=16]*** : 행렬 분해 모델에 사용할 잠재요인의 수를 지정
 ```sql
 CREATE OR REPLACE MODEL ch09eu.movie_recommender_16
 options(model_type='matrix_factorization',
