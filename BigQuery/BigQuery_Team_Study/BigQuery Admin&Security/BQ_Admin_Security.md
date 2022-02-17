@@ -25,17 +25,15 @@
   - jobUser : 쿼리를 포함한 작업을 실행할 수 있으며, 프로젝트에 요금이 청구
   - user : 작업을 실행할 수 있으며, 프로젝트에 요금이 청구될 수 있는 스토리지에 데이터셋 생성 가능
   - admin : 프로젝트 내의 모든 데이터를 관리할 수 있으며 다른 사용자의 작업을 취소할 수 있음
-
+  ![image](https://user-images.githubusercontent.com/77611557/154378983-b3fdee59-b75b-4401-b90b-e26977ee0f08.png)
+  
 - ***_basic roll_***  
 BigQuery의 데이터 세트 수준 기본 역할은 IAM 도입 전에도 존재했던 역할이며, 기본 역할의 사용을 최소화하는 것이 좋음   
   - 프로젝트 기본역할
     - Viewer : bigquery.dataViewer
     - Editor : bigquery.dataEditor
     - Owner : bigquery.dataOwner
-  - 데이터세트 기본역할
-    - READER : bigquery.dataViewer
-    - WRITER : bigquery.dataEditor
-    - OWNER : bigquery.dataOwner
+    ![image](https://user-images.githubusercontent.com/77611557/154379056-65f154b8-a53f-4b57-862b-2b8b5c3a7b13.png)
 
 # 3. 빅쿼리 관리
 ## 3.1. 작업관리
