@@ -111,9 +111,9 @@
 - 장기 스토리지
     - 연속으로 90일 동안 수정되지 않은 모든 테이블 또는 테이블 파티션  
     - 자동으로 50% 인하되며, 활성 스토리지와 성능차이 없음
-- 비용
+- 비용  
 ![image](https://user-images.githubusercontent.com/77611557/152896163-3e4a520f-8be4-4cd9-8f45-ee45f7e29045.png)
-- 다음 작업을 수행할 경우, 활성 90일 카운트로 전환
+- 다음 작업을 수행할 경우, 활성 90일 카운트로 전환  
 ![image](https://user-images.githubusercontent.com/77611557/152896191-2caf62ee-b1ad-4bb1-9232-091c45e99e4a.png)
 
 ## 3.4. 데이터 수집 가격 책정
