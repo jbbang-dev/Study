@@ -299,4 +299,6 @@ WHERE bike_id = 300
     - 회사 비밀 프로젝트 코드
     - 의료 정보 등..
 - Cloud DLP(데이터 유실 방지)를 이용하여 BigQuery를 스캔하고 민감정보 보호 가능
-  - Table EXPORT > Scan with DLP
+  - Table EXPORT > Scan with DLP  
+  ![image](https://user-images.githubusercontent.com/77611557/154391363-ecf3dd0b-fc38-47b2-8485-6c1ca3f0b4e3.png)
+
