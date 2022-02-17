@@ -42,21 +42,21 @@
         ![image](https://user-images.githubusercontent.com/77611557/152895904-64bd638f-a56b-4c5e-b823-6072780ef9f8.png)
     - slot은 여러 프로젝트 간 프로젝트 내 여러 작업 내에 균등하게 배포됨, 모든 쿼리는 언제든지 사용 가능한 모든 슬롯에 액세스 가능하며 동적으로 자동 재할당됨
 
-## 2.3. 워크로드 관리
-- 별도의 프로젝트를 구성하여(추천 프로젝트 명 : ***bq-COMPANY_NAME-admin***) 중앙에서 슬롯을 관리하게 하고, 프로젝트/부서/팀별로 슬롯 할당 및 용량 분산 관리 가능  
-![image](https://user-images.githubusercontent.com/77611557/152895937-03ad2abb-a209-4cb3-95d5-117b59b86bec.png)
-    
-## 2.4. 예약 사용하기
-### 2.4.1. Buy slots
+## 2.3. 예약 사용하기
+### 2.3.1. Buy slots
 ![image](https://user-images.githubusercontent.com/77611557/154381107-88f07ee6-8096-43d7-8336-296e19f37b0a.png)
 ![image](https://user-images.githubusercontent.com/77611557/154381146-e954c3e6-9e21-4e42-9906-30dc2295473d.png)
 
-### 2.4.2. Create reservation 
+### 2.3.2. Create reservation 
 ![image](https://user-images.githubusercontent.com/77611557/154381261-ba4e7776-84ab-4de7-a2cc-8d94714982a7.png)
 
-### 2.4.3. Create assignment
+### 2.3.3. Create assignment
 ![image](https://user-images.githubusercontent.com/77611557/154381651-595c0e81-844a-41fe-bb02-285fc5af4164.png)
 
+## 2.4. 워크로드 관리
+- 별도의 프로젝트를 구성하여(추천 프로젝트 명 : ***bq-COMPANY_NAME-admin***) 중앙에서 슬롯을 관리하게 하고, 프로젝트/부서/팀별로 슬롯 할당 및 용량 분산 관리 가능  
+![image](https://user-images.githubusercontent.com/77611557/152895937-03ad2abb-a209-4cb3-95d5-117b59b86bec.png)
+    
 # 3. 가격 책정 모델
 ## 3.1. 분석 가격 책정
 >SQL, UDF 스크립트, DML, DDL을 포함한 쿼리를 처리할 때 발생하는 비용   
