@@ -320,8 +320,8 @@ WHERE bike_id = 300
   ![image](https://user-images.githubusercontent.com/77611557/154396334-92061dc1-34ab-4e82-a182-5553f9146f86.png)  
 
 - CMEK로 데이터 암호화 키 직접 관리
-  - Cloud KMS에서 키 링과 키의 교체주기 설정
-  - 지역 설정
+  - Cloud KMS에서 키 링과 키의 교체주기 설정  
+  - 지역 설정  
   ![image](https://user-images.githubusercontent.com/77611557/154396398-4d59ed82-7556-44a9-befe-acaa255fd7e0.png)  
 
 ### 5.3.6. 데이터 유출 보호
