@@ -10,6 +10,7 @@
 - allAuthenticatedUsers
     - 구글 계정이나 서비스 계정으로 인증을 받은 모든 사용자를 의미하는 특별한 식별자
     - 공개 데이터셋을 발행할 때 이 식별자를 주로 사용
+    ![image](https://user-images.githubusercontent.com/77611557/154378575-7252783d-da26-48a9-815b-cadfb899092c.png)
 
 ## 2.2. 역할
 - ***_predefined roll_***  
