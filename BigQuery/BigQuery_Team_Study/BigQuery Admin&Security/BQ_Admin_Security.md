@@ -198,10 +198,11 @@ bq --location=EU cp \
 - 허가된 Dataset / Routine / View(Sharing Authorized ...)
   - 기본적으로 Dataset / Table 단위로 공유 권한을 부여하지 않으면 접근 제한 오류 발생
   - 권한을 부여하지 않은 테이블을 활용하는 Dataset / Routine / View에 대하여 데이터 접근 권한을 부여하는 형태
-- 컬럼 수준 보안
-  - Cloud Data Catalog를 활용하여 컬럼별 접근제어 설정 적용 가능  
+- 컬럼 수준 보안 : Cloud Data Catalog를 활용하여 컬럼별 접근제어 설정 적용 가능  
+  - Policy tag 설정  
   ![image](https://user-images.githubusercontent.com/77611557/154390125-2232f979-1199-4370-a101-1a131ed664fe.png)  
-
+  
+  - 컬럼 스키마에 Policy 적용  
   ![image](https://user-images.githubusercontent.com/77611557/154389972-5c6535d8-2e56-4e8d-810b-b4280e9fb1be.png)  
 
 - 테이블 접근 제어
