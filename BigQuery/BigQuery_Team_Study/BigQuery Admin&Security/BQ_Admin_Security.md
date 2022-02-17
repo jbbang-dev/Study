@@ -98,10 +98,9 @@ bq --location=EU cp \
 
 - _```Cloud Source Repository```_ 및 _```Cloud Function(Cloud Run)```_ 을 이용해 쿼리 실행
 - Cloud Function에서 빅쿼리 호출
-    - Cloud Source Repository에 빅쿼리 SQL 파일과 cloud function을 구현한 python 파일을 버전 관리 시스템에 등록  
-    [Cloud Source Repository](https://source.cloud.google.com/looker-data-grfit/looker-bq-test-repo)
-    - Cloud Function & Cloud Scheduler로 쿼리 예약 대신 사용 가능  
-    [Cloud function](https://console.cloud.google.com/functions/details/asia-northeast3/function-bq-study-jsyoo-01?env=gen1&orgonly=true&project=looker-data-grfit&supportedpurview=organizationId&tab=metrics&pli=1)
+    - [Cloud Source Repository](https://source.cloud.google.com/looker-data-grfit/looker-bq-test-repo)에 빅쿼리 SQL 파일과 cloud function을 구현한 python 파일을 버전 관리 시스템에 등록  
+    - [Cloud function](https://console.cloud.google.com/functions/details/asia-northeast3/function-bq-study-jsyoo-01?env=gen1&orgonly=true&project=looker-data-grfit&supportedpurview=organizationId&tab=metrics&pli=1) & Cloud Scheduler로 쿼리 예약 대신 사용 가능  
+    
     ```python
     from google.cloud import bigquery
 
