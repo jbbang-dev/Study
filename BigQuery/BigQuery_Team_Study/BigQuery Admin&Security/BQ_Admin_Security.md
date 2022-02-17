@@ -182,7 +182,9 @@ bq --location=EU cp \
 ### 5.3.1. 데이터 지역성
 - 대부분의 국가는 데이터 저장 지역에 제한을 둠
 - 데이터는 해당 지역의 실행위치에서만 접근 가능
-- 데이터를 리전간에 이동하기 위해서는 BigQuery Data Transfer Service(Dataset Copy)를 이용할 때만 가능하고, GCS에서 BigQuery Dataset에 복사할 경우에는 동일 지역의 버킷이어야 함(예외적으로 US 멀티리전의 경우 어느 지역으로도 데이터 이동 가능)
+- 데이터를 리전간에 이동하기 위해서는 BigQuery Data Transfer Service(Dataset Copy)를 이용할 때만 가능하고, GCS에서 BigQuery Dataset에 복사할 경우에는 동일 지역의 버킷이어야 함(예외적으로 US 멀티리전의 경우 어느 지역으로도 데이터 이동 가능)  
+![image](https://user-images.githubusercontent.com/77611557/154388439-51052ec0-9ddf-4d75-9c2d-422a1b45c67c.png)
+
 - 안될경우 GCS로 이전 후 destination location bucket으로 이동 및 다시 bigquery ds로 이전
 ### 5.3.2. 데이터 서비스에 대한 접근 제한
 - 허가된 Dataset / Routine / View
