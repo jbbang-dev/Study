@@ -313,15 +313,25 @@ WHERE bike_id = 300
 - 빅쿼리는 봉투 암호화(Envelop encrpytion)를 이용하여 데이터 암호화
   1. 빅쿼리 테이블의 데이터는 먼저 데이터 암호화 키(DEK, Data Encrpytion Key)를 이용해 암호화
   2. DEK를 키 암호화 키(KEK, Key Encripyion Key)를 이용해 암호화 : 리소스는 데이터 덩어리(Chunk)로 나누어져 다른 고객이 사용하는 키와는 별개의 키로 암호화
-  3. 키 암호화 키는 구글 키 관리 서비스(KMS, Key Management Service)에서 중앙 관리
+  3. 키 암호화 키는 구글 키 관리 서비스(KMS, Key Management Service)에서 중앙 관리  
+  ![image](https://user-images.githubusercontent.com/77611557/154396261-ac7d1b26-a32f-451f-86ab-aca565ced330.png)  
+  ![image](https://user-images.githubusercontent.com/77611557/154396334-92061dc1-34ab-4e82-a182-5553f9146f86.png)  
 
 - CMEK로 데이터 암호화 키 직접 관리
   - Cloud KMS에서 키 링과 키의 교체주기 설정
   - 지역 설정
+  ![image](https://user-images.githubusercontent.com/77611557/154396398-4d59ed82-7556-44a9-befe-acaa255fd7e0.png)  
 
 ### 5.3.6. 데이터 유출 보호
 - VPC-SC(VPC Service Control)
   - Google Cloud 리소스에 대한 관리형 네트워킹 기능
   - 리소스에 대한 비공개 엑세스 권한 설정
-  - 경계로 분리된 클라이언트 및 리소스 간의 데이터 교환은 인그레스 및 이그레스 규칙을 사용하여 보호됨
-  
+  - 경계로 분리된 클라이언트 및 리소스 간의 데이터 교환은 인그레스 및 이그레스 규칙을 사용하여 보호됨  
+  ![image](https://user-images.githubusercontent.com/77611557/154396444-f510842a-df97-4b75-99c6-e555713eb017.png)  
+  ![image](https://user-images.githubusercontent.com/77611557/154396479-cbdc5dab-af5f-4844-90fa-fba4c77affd3.png)  
+ 
+  - 예시
+    - 프로젝트A에 빅쿼리와 클라우드 스토리지 등 2개의 서비스를 선택
+    - 이 프로젝트는 클라우드 스토리지로부터 빅쿼리로 데이터를 로드하거나 빅쿼리에서 클라우드 스토리지로 데이터를 내보낼 수는 있지만, 해당 프로젝트가 소유한 버킷만 사용 가능
+    - 다른 프로젝트가 소유한 버킷에서 빅쿼리로 데이터를 로드하거나 다른 프로젝트가 소유한 버킷으로 빅쿼리 데이터를 내보낼 수는 없음
+    - 경계에 두 프로젝트를 추가해서 두 프로젝트 간에 통신 허용 가능
