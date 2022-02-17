@@ -24,7 +24,8 @@
 - SQL 쿼리를 실행하기 위해 BigQuery에서 사용되는 ***_```가상 CPU```_***
 - 쿼리 크기와 복잡성에 따라 각 쿼리에 필요한 슬롯 수를 자동으로 계산
 - On-demand pricing(주문형 가격 책정 모델) / Flat-rate pricing(정액제 가격 책정 모델) 둘다 슬롯은 사용되며, 정액제는 슬롯 및 분석 용량을 명시할 수 있음(예, 2000개의 슬롯 구매 시 2000개 이하의 가상 CPU만 사용되도록 제한)
-- 사용되는 슬롯 수는 Cloud Monitoring에서 확인 가능
+- 사용되는 슬롯 수는 Cloud Monitoring에서 확인 가능  
+![image](https://user-images.githubusercontent.com/77611557/154500331-187cc906-17fc-472c-9cc2-491bb8aab6ad.png)
 
 ## 2.2. slot을 활용한 쿼리 실행
 - 분산 병렬 아키텍처로 쿼리를 실행하며, 각 스테이지는 worker가 동시에 실행할 수 있는 작업 단위 모델링
