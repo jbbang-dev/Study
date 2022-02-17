@@ -178,9 +178,12 @@ bq --location=EU cp \
 - 고객 관리형 암호화 키(Customer Managed Encryption Keys)
   - 고객이 소유한 키를 이용한 암호화 방법
   - CMEK 또한 KMS(Key Managed Service)를 통해 관리  
-  ![image](https://user-images.githubusercontent.com/77611557/154392652-60c8bd27-8871-4622-998e-dea1ed73f2c9.png)  
-  ![image](https://user-images.githubusercontent.com/77611557/154392700-63341094-da33-4f4c-8031-69cfe33dc607.png)  
-  ![image](https://user-images.githubusercontent.com/77611557/154392773-d9274db7-cc46-4945-bcd8-05ec7b111bd8.png)
+    - Key Management 및 Create Key RING 생성(CMEK)
+    ![image](https://user-images.githubusercontent.com/77611557/154392652-60c8bd27-8871-4622-998e-dea1ed73f2c9.png)  
+    - CMEK를 이용하여 테이블 생성
+    ![image](https://user-images.githubusercontent.com/77611557/154392700-63341094-da33-4f4c-8031-69cfe33dc607.png)  
+    - 
+    ![image](https://user-images.githubusercontent.com/77611557/154392773-d9274db7-cc46-4945-bcd8-05ec7b111bd8.png)
 
 ## 5.3. 규제의 준수
 ### 5.3.1. 데이터 지역성
