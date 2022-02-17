@@ -92,9 +92,17 @@
 
 ## 3.2. BigQuery Omni 가격 책정
 - 멀티 클라우드로 스토리지(데이터)가 분산되어있는 각 클라우드 내에서 빅쿼리 처리 수행되는 형태
+  - AWS : S3 Storage
+  - Azure : Blob Storage
 - https://cloud.google.com/bigquery-omni/docs/introduction
 - 현재 US-east-1 밖에 없음
+- 월간 정액제 가격 예시
+  - AWS  
+  ![image](https://user-images.githubusercontent.com/77611557/154382870-7375ad82-982a-46cd-be14-2ea46cc7646e.png)
 
+  - Azure  
+  ![image](https://user-images.githubusercontent.com/77611557/154382926-26680710-9316-48af-a543-56fc538c8ebd.png)
+  
 ## 3.3. 스토리지 가격 책정
 >BigQuery에 로드한 데이터를 저장하는 데 드는 비용  
 
