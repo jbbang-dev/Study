@@ -10,6 +10,7 @@
 - allAuthenticatedUsers
     - 구글 계정이나 서비스 계정으로 인증을 받은 모든 사용자를 의미하는 특별한 식별자
     - 공개 데이터셋을 발행할 때 이 식별자를 주로 사용
+    
     ![image](https://user-images.githubusercontent.com/77611557/154378575-7252783d-da26-48a9-815b-cadfb899092c.png)
 
 ## 2.2. 역할
@@ -25,6 +26,7 @@
   - jobUser : 쿼리를 포함한 작업을 실행할 수 있으며, 프로젝트에 요금이 청구
   - user : 작업을 실행할 수 있으며, 프로젝트에 요금이 청구될 수 있는 스토리지에 데이터셋 생성 가능
   - admin : 프로젝트 내의 모든 데이터를 관리할 수 있으며 다른 사용자의 작업을 취소할 수 있음
+  
   ![image](https://user-images.githubusercontent.com/77611557/154378983-b3fdee59-b75b-4401-b90b-e26977ee0f08.png)
   
 - ***_basic roll_***  
@@ -33,14 +35,16 @@ BigQuery의 데이터 세트 수준 기본 역할은 IAM 도입 전에도 존재
     - Viewer : bigquery.dataViewer
     - Editor : bigquery.dataEditor
     - Owner : bigquery.dataOwner
+    
     ![image](https://user-images.githubusercontent.com/77611557/154379056-65f154b8-a53f-4b57-862b-2b8b5c3a7b13.png)
 
 # 3. 빅쿼리 관리
 ## 3.1. 작업관리
->- 3가지의 상태 부여
->   - PENDING : 작업이 예약되었지만 아직 시작되지 않은 상태
->   - RUNNING : 작업이 시작되었음
->   - SUCCESS & FAILURE : 작업 결과에 따른 반환값
+
+- 3가지의 상태 부여
+   - PENDING : 작업이 예약되었지만 아직 시작되지 않은 상태
+   - RUNNING : 작업이 시작되었음
+   - SUCCESS & FAILURE : 작업 결과에 따른 반환값
 
 ```bash
 # 지난 24시간 내에 생성된 작업을 확인하는 명령
@@ -61,8 +65,8 @@ bq --location=US cancel bquxjob_180ae24c_16b04a8d28d
 bq cancel someproject:US.bquxjob_180ae24c_16b04a8d28d
 ```
 ## 3.2. 삭제된 레코드와 테이블의 복구
->7일 이내 데이터 복구 가능  
-삭제된 테이블은 2일 이내 복구 가능
+>- 7일 이내 데이터 복구 가능  
+>- 삭제된 테이블은 2일 이내 복구 가능
 
 - 테이블 복구
 ```sql
@@ -95,7 +99,8 @@ bq --location=EU cp \
 - Cloud Function에서 빅쿼리 호출
     - Cloud Source Repository에 빅쿼리 SQL 파일과 cloud function을 구현한 python 파일을 버전 관리 시스템에 등록  
     [Cloud Source Repository](https://source.cloud.google.com/looker-data-grfit/looker-bq-test-repo)
-    - Cloud Function & Cloud Scheduler로 쿼리 예약 대신 사용 가능
+    - Cloud Function & Cloud Scheduler로 쿼리 예약 대신 사용 가능  
+    [Cloud function](https://console.cloud.google.com/functions/details/asia-northeast3/function-bq-study-jsyoo-01?env=gen1&orgonly=true&project=looker-data-grfit&supportedpurview=organizationId&tab=metrics&pli=1)
     ```python
     from google.cloud import bigquery
 
