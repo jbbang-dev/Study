@@ -102,6 +102,7 @@ bq --location=EU cp \
     - [Cloud function](https://console.cloud.google.com/functions/details/asia-northeast3/function-bq-study-jsyoo-01?env=gen1&orgonly=true&project=looker-data-grfit&supportedpurview=organizationId&tab=metrics&pli=1) & Cloud Scheduler로 쿼리 예약 대신 사용 가능  
     
     ```python
+    # 빅쿼리로 조회된 데이터를 GCS에 저장
     from google.cloud import bigquery
 
     def bq_cloudfunc01(request):
