@@ -187,7 +187,7 @@ bq --location=EU cp \
 
 - 안될경우 GCS로 이전 후 destination location bucket으로 이동 및 다시 bigquery ds로 이전
 ### 5.3.2. 데이터 서비스에 대한 접근 제한
-- 허가된 Dataset / Routine / View
+- 허가된 Dataset / Routine / View(Sharing Authorized ...)
   - 기본적으로 Dataset / Table 단위로 공유 권한을 부여하지 않으면 접근 제한 오류 발생
   - 권한을 부여하지 않은 테이블을 활용하는 Dataset / Routine / View에 대하여 데이터 접근 권한을 부여하는 형태
 - 컬럼 수준 보안
