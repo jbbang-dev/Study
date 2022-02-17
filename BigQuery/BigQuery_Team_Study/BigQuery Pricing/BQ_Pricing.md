@@ -156,7 +156,9 @@ ORDER BY 1 ASC, 2 ASC
 - [PUBLIC - GCP Advanced Billing Dashboard](https://datastudio.google.com/u/0/reporting/1MJ0GHVvcHI6cRHwMKyeSK3r7UoabEHOH/page/WXzW)
 
 - label
-    - 데이터셋에 레이블을 정의하여 요금 보고서 분류
+    - 데이터셋에 레이블을 정의하여 요금 보고서 분류  
+    ![image](https://user-images.githubusercontent.com/77611557/154387805-9be7cef3-5f48-4eb4-a70b-2c185c7846bc.png)
+
     - label key/value값을 셋팅하고 export 된 데이터 셋에서 labels 속성을 이용해 구분지어 확인 가능
     ```sql
     SELECT
