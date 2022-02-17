@@ -77,9 +77,9 @@
 - 종류
     - 월간
     ![image](https://user-images.githubusercontent.com/77611557/152896051-9342bdfe-8b5b-4673-9d9a-b98842a7402f.png)
-    - 연간
+    - 연간(장기 약정)
     ![image](https://user-images.githubusercontent.com/77611557/152896082-387353ef-794c-4d8d-a89a-20c43a5cbacf.png)
-    - 가변슬롯
+    - 가변슬롯(초단기 약정)
         - 가변 슬롯은 특수 약정 유형
         - 약정이 활성화된 후 60초까지는 가변 슬롯 약정을 삭제할 수 없습니다.
         - 60초가 지나면 언제든지 취소할 수 있으며 약정이 활성화된 시간(초)에 대해서만 요금이 청구됩니다.
