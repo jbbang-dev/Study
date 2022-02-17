@@ -335,3 +335,15 @@ WHERE bike_id = 300
     - 이 프로젝트는 클라우드 스토리지로부터 빅쿼리로 데이터를 로드하거나 빅쿼리에서 클라우드 스토리지로 데이터를 내보낼 수는 있지만, 해당 프로젝트가 소유한 버킷만 사용 가능
     - 다른 프로젝트가 소유한 버킷에서 빅쿼리로 데이터를 로드하거나 다른 프로젝트가 소유한 버킷으로 빅쿼리 데이터를 내보낼 수는 없음
     - 경계에 두 프로젝트를 추가해서 두 프로젝트 간에 통신 허용 가능
+
+# Reference
+- [ 구글 빅쿼리 완벽 가이드: 발리아파 락쉬마난, 조던 티가니 저/변성윤, 장현희 역, 책만, 2020 ]
+- [Introduction to column-level security | BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/column-level-security-intro)
+- [Overview of VPC Service Controls | Google Cloud](https://cloud.google.com/vpc-service-controls/docs/overview)
+- [VPC Service Controls documentation | Google Cloud](https://cloud.google.com/vpc-service-controls/docs)
+- [Overview | IAM Documentation | Google Cloud](https://cloud.google.com/iam/docs/overview)
+- [Introduction to loading data | BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/loading-data)
+- [Google-managed encryption keys | Cloud Storage](https://cloud.google.com/storage/docs/encryption/default-keys)
+- [Data encryption options | Cloud Storage](https://cloud.google.com/storage/docs/encryption)
+- [Encryption at rest in Google Cloud | Documentation](https://cloud.google.com/security/encryption/default-encryption#key_management)
+- [Envelope encryption | Cloud KMS Documentation](https://cloud.google.com/kms/docs/envelope-encryption)
