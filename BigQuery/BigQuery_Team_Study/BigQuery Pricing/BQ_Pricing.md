@@ -117,6 +117,8 @@
 ![image](https://user-images.githubusercontent.com/77611557/152896191-2caf62ee-b1ad-4bb1-9232-091c45e99e4a.png)
 
 ## 3.4. 데이터 수집 가격 책정
+![image](https://user-images.githubusercontent.com/77611557/152896241-286d58dd-fcfb-4e9f-9ebf-04461b959494.png)
+
 - 일괄로드
   - Cloud Storage나 로컬에서 파일 업로드(Avro, CSV, JSON, ORC 등)
   - BQ Data Transfer Service
@@ -127,7 +129,6 @@
   - Dataflow  
   ![image](https://user-images.githubusercontent.com/77611557/154386879-d18add4c-01cd-4337-8986-f19a6b5d0ef2.png)
   - SAP용 BigQuery 커넥터  
-![image](https://user-images.githubusercontent.com/77611557/152896241-286d58dd-fcfb-4e9f-9ebf-04461b959494.png)
 
 ## 3.5. 데이터 추출 가격 책정
 ![image](https://user-images.githubusercontent.com/77611557/152896275-62095e00-eff9-4812-9801-182ae74dfc91.png)
