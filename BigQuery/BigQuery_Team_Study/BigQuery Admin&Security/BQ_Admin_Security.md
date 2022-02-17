@@ -309,3 +309,19 @@ WHERE bike_id = 300
   - Table EXPORT > Scan with DLP  
   ![image](https://user-images.githubusercontent.com/77611557/154391363-ecf3dd0b-fc38-47b2-8485-6c1ca3f0b4e3.png)
 
+### 5.3.5. CMEK(Client Managed Encryption Key)
+- 빅쿼리는 봉투 암호화(Envelop encrpytion)를 이용하여 데이터 암호화
+  1. 빅쿼리 테이블의 데이터는 먼저 데이터 암호화 키(DEK, Data Encrpytion Key)를 이용해 암호화
+  2. DEK를 키 암호화 키(KEK, Key Encripyion Key)를 이용해 암호화 : 리소스는 데이터 덩어리(Chunk)로 나누어져 다른 고객이 사용하는 키와는 별개의 키로 암호화
+  3. 키 암호화 키는 구글 키 관리 서비스(KMS, Key Management Service)에서 중앙 관리
+
+- CMEK로 데이터 암호화 키 직접 관리
+  - Cloud KMS에서 키 링과 키의 교체주기 설정
+  - 지역 설정
+
+### 5.3.6. 데이터 유출 보호
+- VPC-SC(VPC Service Control)
+  - Google Cloud 리소스에 대한 관리형 네트워킹 기능
+  - 리소스에 대한 비공개 엑세스 권한 설정
+  - 경계로 분리된 클라이언트 및 리소스 간의 데이터 교환은 인그레스 및 이그레스 규칙을 사용하여 보호됨
+  
