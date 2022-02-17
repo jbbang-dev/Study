@@ -59,7 +59,7 @@
 ## 3.1. 분석 가격 책정
 >SQL, UDF 스크립트, DML, DDL을 포함한 쿼리를 처리할 때 발생하는 비용   
 
-### 3.1.1. 주문형 가격 책정 모델
+### 3.1.1. 주문형 가격 책정 모델(On-demand pricing)
 - 쿼리에서 처리된 바이트 수에 대한 요금 부과, 사용한 만큼만 지불
 - 쿼리는 공유 슬롯 풀을 사용하므로 실행시 마다 성능이 다를 수 있음
 - 테이블당 데이터 처리량은 최소 10MB로 간주함
@@ -68,7 +68,7 @@
 - 컬럼 기반 데이터 구조에서 열의 총 데이터 처리량을 기준으로 요금 청구되며, 열의 데이터 유형에 따로 계산
 ![image](https://user-images.githubusercontent.com/77611557/152895994-53d94e22-c07b-4e41-b163-04aa0d9baa92.png)
 
-### 3.1.2. 정액제
+### 3.1.2. 정액제(Flat-rate pricing)
 - 가상 CPU인 슬롯을 구매하고, 이 용량을 소비하여 처리한 바이트에 대해서는 요금이 청구되지 않음
 - 장기 약정에 대해 할인된 가격으로 보장된 용량을 구매 가능
 - 예측가능 : 몇개의 슬롯을 구매하면 몇개의 쿼리를 실행하든 같은 가격을 지불하므로, 비용을 예상하기를 원하는 기업에 적합
@@ -116,7 +116,7 @@
 - 다음 작업을 수행할 경우, 활성 90일 카운트로 전환  
 ![image](https://user-images.githubusercontent.com/77611557/152896191-2caf62ee-b1ad-4bb1-9232-091c45e99e4a.png)
 
-## 3.4. 데이터 수집 가격 책정
+## 3.4. 데이터 수집 가격 책정(Data ingestion pricing)
 ![image](https://user-images.githubusercontent.com/77611557/152896241-286d58dd-fcfb-4e9f-9ebf-04461b959494.png)
 
 - 일괄로드
@@ -130,13 +130,13 @@
   ![image](https://user-images.githubusercontent.com/77611557/154386879-d18add4c-01cd-4337-8986-f19a6b5d0ef2.png)
   - SAP용 BigQuery 커넥터  
 
-## 3.5. 데이터 추출 가격 책정
+## 3.5. 데이터 추출 가격 책정(Data extraction pricing)
 ![image](https://user-images.githubusercontent.com/77611557/152896275-62095e00-eff9-4812-9801-182ae74dfc91.png)
 
-## 3.6. 무료 작업
+## 3.6. 무료 작업(Free operations)
 ![image](https://user-images.githubusercontent.com/77611557/152896331-e28f3e3d-653e-47b2-865b-042d73b88694.png)
 
-## 3.7. 무료 사용량 등급
+## 3.7. 무료 사용량 등급(Free usage tier)
 ![image](https://user-images.githubusercontent.com/77611557/152896359-201cb80d-a915-42a6-9fc9-5acbaacae1f2.png)
 
 # 4. Biiling Export
